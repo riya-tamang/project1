@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="diaries.php" method="post">
+        <input type="text" placeholder="How your experience? " name="text">
+    <input type="file" id="fileInput" multiple>
+    <button onclick="uploadFile()">Upload</button>
+    <p id="status"></p>
+    </form>
+   
+    <script>
+        function uploadFile()
+        {
+            let file= document.getElementById('fileInput').files;//array of uploaded files
+            let formData = new FormData(); //anyimgtextvide boundires strings binary data autai banaune
+            if (file.length === 0) {  // Correct way to check if files are selected
+        alert("No files selected");
+        return;
+    }
+            for(let i=0;i<files.length;i++)
+        {
+            formData.append("file[]",files[i]);
+        }
+            if(!files)
+        {
+            alert("no files selected");
+            return;
+        }
+        
+let inputtext = document.querySelector("input[name='text']").value;
+formData.append("text",inputtext);
+
+fetch("diaries.php",
+        {
+        method : "POST",
+        body : formData
+})
+
+.then(response =>response.text())
+.then (data => document.getElementById("status").innerHTML= data)
+.catch(error=>console.error("ERROR:",error));
+    }
+    </script>
+</body>
+</html>
